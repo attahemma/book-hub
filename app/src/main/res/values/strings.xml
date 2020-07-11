@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BookListActivity</string>
+    <string name="tvresponse">tvResponse</string>
+</resources>
