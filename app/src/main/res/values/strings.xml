@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">BookListActivity</string>
+    <string name="app_name">Book Hub</string>
     <string name="tvresponse">tvResponse</string>
+    <string name="error_loading_data_from_internet">Error Loading Data from Internet</string>
 </resources>
