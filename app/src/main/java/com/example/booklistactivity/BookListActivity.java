@@ -1,6 +1,8 @@
 package com.example.booklistactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,12 +20,15 @@ public class BookListActivity extends AppCompatActivity {
 
     private String mJsonResult;
     private ProgressBar mProgressLoading;
+    private RecyclerView mRvBooks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
-
+        mRvBooks =(RecyclerView) findViewById(R.id.books_recycle);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mRvBooks.setLayoutManager(linearLayoutManager);
         mProgressLoading = (ProgressBar) findViewById(R.id.pb_loading);
         try {
             URL bookUrl = ApiUtils.buildUrl("Android");
@@ -52,29 +57,31 @@ public class BookListActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            TextView resultView = (TextView) findViewById(R.id.tvResponse);
+            //TextView resultView = (TextView) findViewById(R.id.tvResponse);
             TextView tvError = (TextView) findViewById(R.id.tv_error);
             ImageView tvErrorImg = (ImageView) findViewById(R.id.error_image);
             mProgressLoading.setVisibility(View.INVISIBLE );
             if (result  == null){
                 tvErrorImg.setVisibility(View.VISIBLE);
-                resultView.setVisibility(View.INVISIBLE);
+                mRvBooks.setVisibility(View.INVISIBLE);
                 tvError.setVisibility(View.VISIBLE);
             }else {
                 tvErrorImg.setVisibility(View.INVISIBLE);
-                resultView.setVisibility(View.VISIBLE);
-                resultView.setText(result);
+                mRvBooks.setVisibility(View.VISIBLE);
+                //resultView.setText(result);
+
                 Log.d("Output",result);
                 ArrayList<Book> books = ApiUtils.getBooksFromJson(result);
                 String resultString = "";
                 if (books.isEmpty()){
-                    resultString = resultString+"NO BOOK FOUND!";
+
+
+                    //resultString = resultString+"NO BOOK FOUND!";
                 }else {
-                    for (Book book: books) {
-                        resultString = resultString+book.title+"\nDate Published: "+book.publishedDate+"\n\n";
-                    }
+                    BooksAdapter booksAdapter = new BooksAdapter(books);
+                    mRvBooks.setAdapter(booksAdapter);
                 }
-                resultView.setText(resultString);
+
             }
 
         }

@@ -7,11 +7,21 @@
     android:background="#1D2242"
     tools:context=".BookListActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/books_recycle"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/book_list_item" />
+
     <ProgressBar
         android:id="@+id/pb_loading"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:indeterminate="true"
         android:max="100"
         android:progress="10"
@@ -21,19 +31,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvResponse"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/tvresponse"
-        android:textColor="#FFEB3B"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pb_loading" />
 
     <TextView
         android:id="@+id/tv_error"
