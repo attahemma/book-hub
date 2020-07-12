@@ -2,4 +2,10 @@
     <string name="app_name">Book Hub</string>
     <string name="tvresponse">tvResponse</string>
     <string name="error_loading_data_from_internet">Error Loading Data from Internet</string>
+    <string name="search">Search</string>
+    <string name="book_title">Book Title</string>
+    <string name="book_subtitle">Book Subtitle</string>
+    <string name="book_cover_image">book cover image</string>
+    <string name="book_publisher">Book Publisher</string>
+    <string name="published_date">published date</string>
 </resources>

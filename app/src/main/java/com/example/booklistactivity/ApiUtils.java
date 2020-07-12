@@ -70,6 +70,7 @@ public class ApiUtils {
         final String PUBLISHED_DATE = "publishedDate";
         final String ITEMS = "items";
         final String VOLUME_INFO = "volumeInfo";
+        final String DESCRIPTION = "description";
         String[] noAuthors = {"no authors"};
 
         ArrayList<Book> books = new ArrayList<>();
@@ -96,20 +97,22 @@ public class ApiUtils {
                     Book book = new Book(
                             bookJson.getString(ID),
                             volumeInfoJson.getString(TITLE),
-                            (volumeInfoJson.isNull(SUBTITLE)?"":volumeInfoJson.getString(SUBTITLE)),
+                            (volumeInfoJson.isNull(SUBTITLE) ? " ":volumeInfoJson.getString(SUBTITLE)),
                             authors,
-                            (bookJson.isNull(PUBLISHER)?"":bookJson.getString(PUBLISHER)),
-                            (bookJson.isNull(PUBLISHED_DATE)?"":bookJson.getString(PUBLISHED_DATE))
+                            (bookJson.isNull(PUBLISHER) ? " ":bookJson.getString(PUBLISHER)),
+                            (bookJson.isNull(PUBLISHED_DATE) ?" ":bookJson.getString(PUBLISHED_DATE)),
+                            (bookJson.isNull(DESCRIPTION) ? " ":bookJson.getString(DESCRIPTION))
                     );
                     books.add(book);
                 }else{
                     Book book = new Book(
                       bookJson.getString(ID),
                             volumeInfoJson.getString(TITLE),
-                            (volumeInfoJson.isNull(SUBTITLE)?"":volumeInfoJson.getString(SUBTITLE)),
+                            (volumeInfoJson.isNull(SUBTITLE) ? " ":volumeInfoJson.getString(SUBTITLE)),
                             noAuthors,
-                            (bookJson.isNull(PUBLISHER)?"":bookJson.getString(PUBLISHER)),
-                            (bookJson.isNull(PUBLISHED_DATE)?"":bookJson.getString(PUBLISHED_DATE))
+                            (bookJson.isNull(PUBLISHER) ? " ":bookJson.getString(PUBLISHER)),
+                            (bookJson.isNull(PUBLISHED_DATE) ? "":bookJson.getString(PUBLISHED_DATE)),
+                            bookJson.getString(DESCRIPTION)
                     );
                     books.add(book);
                 }

@@ -1,6 +1,7 @@
 package com.example.booklistactivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
         return mBooks.size();
     }
 
-    public class BookViewHolder extends RecyclerView.ViewHolder{
+    public class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView bookTitle;
         TextView publisher;
         TextView publishedDate;
@@ -50,13 +51,22 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             bookTitle = (TextView) itemView.findViewById(R.id.book_title);
             publishedDate = (TextView) itemView.findViewById(R.id.book_published_date);
             publisher = (TextView) itemView.findViewById(R.id.book_publisher);
-
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Book book){
             bookTitle.setText(book.title);
             publisher.setText(book.publisher);
             publishedDate.setText(book.publishedDate);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position  = getAdapterPosition();
+            Book bookSelected = mBooks.get(position);
+            Intent intent = new Intent(view.getContext(),BookDetails.class);
+            intent.putExtra("Books",bookSelected);
+            view.getContext().startActivity(intent);
         }
     }
 }

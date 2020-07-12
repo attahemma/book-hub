@@ -1,33 +1,38 @@
 package com.example.booklistactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class BookListActivity extends AppCompatActivity {
+public class BookListActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     private String mJsonResult;
     private ProgressBar mProgressLoading;
     private RecyclerView mRvBooks;
+    private BooksAdapter mBooksAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
         mRvBooks =(RecyclerView) findViewById(R.id.books_recycle);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRvBooks.setLayoutManager(linearLayoutManager);
         mProgressLoading = (ProgressBar) findViewById(R.id.pb_loading);
         try {
@@ -38,6 +43,33 @@ public class BookListActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.book_list_menu, menu);
+        final MenuItem searchItem = menu.findItem(R.id.app_bar_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(this);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        try {
+            URL bookUrl = ApiUtils.buildUrl(s);
+            new BookQueryTask().execute(bookUrl);
+            //mBooksAdapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            Log.d("Error", e.toString());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+
+        return false;
     }
 
     public class BookQueryTask extends AsyncTask<URL,Void,String>{
@@ -78,8 +110,8 @@ public class BookListActivity extends AppCompatActivity {
 
                     //resultString = resultString+"NO BOOK FOUND!";
                 }else {
-                    BooksAdapter booksAdapter = new BooksAdapter(books);
-                    mRvBooks.setAdapter(booksAdapter);
+                    mBooksAdapter = new BooksAdapter(books);
+                    mRvBooks.setAdapter(mBooksAdapter);
                 }
 
             }
