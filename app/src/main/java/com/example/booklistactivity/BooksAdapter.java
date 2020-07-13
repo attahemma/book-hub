@@ -2,9 +2,11 @@ package com.example.booklistactivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -45,12 +47,14 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
         TextView bookTitle;
         TextView publisher;
         TextView publishedDate;
+        ImageView mBookImg;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
             bookTitle = (TextView) itemView.findViewById(R.id.book_title);
             publishedDate = (TextView) itemView.findViewById(R.id.book_published_date);
             publisher = (TextView) itemView.findViewById(R.id.book_publisher);
+            mBookImg = (ImageView) itemView.findViewById(R.id.book_cover_img);
             itemView.setOnClickListener(this);
         }
 
@@ -58,6 +62,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             bookTitle.setText(book.title);
             publisher.setText(book.publisher);
             publishedDate.setText(book.publishedDate);
+            //mBookImg.setImageURI(new Uri());
         }
 
         @Override

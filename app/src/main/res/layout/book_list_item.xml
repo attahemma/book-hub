@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/book_cover_img"
                 android:layout_width="43dp"
                 android:layout_height="33dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +36,7 @@
                 android:textAppearance="@android:style/TextAppearance.Material.Large"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/book_cover_img"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView

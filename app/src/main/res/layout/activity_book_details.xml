@@ -52,6 +52,7 @@
         android:contentDescription="@string/book_cover_image"
         app:layout_constraintStart_toStartOf="@+id/book_detail_subtitle"
         app:layout_constraintTop_toBottomOf="@+id/book_detail_subtitle"
+        android:imageUrl="@{Book.thumbnail}"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView

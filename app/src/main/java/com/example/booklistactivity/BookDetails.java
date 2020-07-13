@@ -1,6 +1,7 @@
 package com.example.booklistactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
@@ -9,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.booklistactivity.databinding.ActivityBookDetailsBinding;
+import com.squareup.picasso.Picasso;
+
+import static java.security.AccessController.getContext;
 
 public class BookDetails extends AppCompatActivity {
 
@@ -21,6 +25,7 @@ public class BookDetails extends AppCompatActivity {
         ActivityBookDetailsBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_book_details);
         binding.setBook(book);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

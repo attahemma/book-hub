@@ -36,7 +36,7 @@ public class BookListActivity extends AppCompatActivity implements SearchView.On
         mRvBooks.setLayoutManager(linearLayoutManager);
         mProgressLoading = (ProgressBar) findViewById(R.id.pb_loading);
         try {
-            URL bookUrl = ApiUtils.buildUrl("Android");
+            URL bookUrl = ApiUtils.buildUrl("Jesus");
             new BookQueryTask().execute(bookUrl);
         } catch (Exception e) {
             Log.d("Error", e.toString());
@@ -100,14 +100,13 @@ public class BookListActivity extends AppCompatActivity implements SearchView.On
             }else {
                 tvErrorImg.setVisibility(View.INVISIBLE);
                 mRvBooks.setVisibility(View.VISIBLE);
+                tvError.setVisibility(View.INVISIBLE);
                 //resultView.setText(result);
 
                 Log.d("Output",result);
                 ArrayList<Book> books = ApiUtils.getBooksFromJson(result);
                 String resultString = "";
                 if (books.isEmpty()){
-
-
                     //resultString = resultString+"NO BOOK FOUND!";
                 }else {
                     mBooksAdapter = new BooksAdapter(books);

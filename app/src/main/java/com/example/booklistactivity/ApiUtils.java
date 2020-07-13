@@ -71,6 +71,8 @@ public class ApiUtils {
         final String ITEMS = "items";
         final String VOLUME_INFO = "volumeInfo";
         final String DESCRIPTION = "description";
+        final String IMAGELINKS = "imageLinks";
+        final String THUMBNAIL = "thumbnail";
         String[] noAuthors = {"no authors"};
 
         ArrayList<Book> books = new ArrayList<>();
@@ -88,6 +90,7 @@ public class ApiUtils {
             for (int i=0; i<numberOfBooks;i++){
                 JSONObject bookJson = arrayBooks.getJSONObject(i);
                 JSONObject volumeInfoJson = bookJson.getJSONObject(VOLUME_INFO);
+                JSONObject bookImageLinks = volumeInfoJson.getJSONObject(IMAGELINKS);
                 authorsNum = (volumeInfoJson.isNull(AUTHORS)?0:volumeInfoJson.getJSONArray(AUTHORS).length());
                 if (authorsNum != 0){
                     String[] authors = new String[authorsNum];
@@ -99,9 +102,10 @@ public class ApiUtils {
                             volumeInfoJson.getString(TITLE),
                             (volumeInfoJson.isNull(SUBTITLE) ? " ":volumeInfoJson.getString(SUBTITLE)),
                             authors,
-                            (bookJson.isNull(PUBLISHER) ? " ":bookJson.getString(PUBLISHER)),
-                            (bookJson.isNull(PUBLISHED_DATE) ?" ":bookJson.getString(PUBLISHED_DATE)),
-                            (bookJson.isNull(DESCRIPTION) ? " ":bookJson.getString(DESCRIPTION))
+                            volumeInfoJson.getString(PUBLISHER),
+                            volumeInfoJson.getString(PUBLISHED_DATE),
+                            volumeInfoJson.getString(DESCRIPTION),
+                            bookImageLinks.getString(THUMBNAIL)
                     );
                     books.add(book);
                 }else{
@@ -110,9 +114,10 @@ public class ApiUtils {
                             volumeInfoJson.getString(TITLE),
                             (volumeInfoJson.isNull(SUBTITLE) ? " ":volumeInfoJson.getString(SUBTITLE)),
                             noAuthors,
-                            (bookJson.isNull(PUBLISHER) ? " ":bookJson.getString(PUBLISHER)),
-                            (bookJson.isNull(PUBLISHED_DATE) ? "":bookJson.getString(PUBLISHED_DATE)),
-                            bookJson.getString(DESCRIPTION)
+                            volumeInfoJson.getString(PUBLISHER),
+                            volumeInfoJson.getString(PUBLISHED_DATE),
+                            volumeInfoJson.getString(DESCRIPTION),
+                            bookImageLinks.getString(THUMBNAIL)
                     );
                     books.add(book);
                 }
