@@ -14,7 +14,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BookDetails"
-    android:background="@color/layout_backgrounds"
+    android:background="@drawable/background_gradient"
     >
     <ScrollView
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@{Book.title}"
                 android:textAppearance="@android:style/TextAppearance.Material.Large"
-                android:textColor="#FFEB3B"
+                android:textColor="@color/orangeDark"
                 android:textSize="26sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@{Book.subTitle}"
-                android:textColor="#FFC107"
+                android:textColor="@color/orange"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/book_detail_title"
                 app:layout_constraintStart_toStartOf="@+id/book_detail_title"
@@ -78,7 +78,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
                 android:text="@{Book.publisher}"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/book_cover"
@@ -91,12 +91,11 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="24dp"
                 android:text="@{Book.publishedDate}"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/book_detail_publisher"
                 app:layout_constraintTop_toBottomOf="@+id/book_detail_publisher" />
-
 
 
             <TextView
@@ -105,7 +104,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/colorAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/book_cover"
