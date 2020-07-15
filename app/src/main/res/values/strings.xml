@@ -8,4 +8,7 @@
     <string name="book_cover_image">book cover image</string>
     <string name="book_publisher">Book Publisher</string>
     <string name="published_date">published date</string>
+    <string name="advanced_search">Advanced Search</string>
+    <string name="no_search_data">make sure to fill all fields</string>
+    <string name="intent_query_key">Query</string>
 </resources>
