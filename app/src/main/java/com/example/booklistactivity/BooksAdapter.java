@@ -3,6 +3,7 @@ package com.example.booklistactivity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,11 +44,12 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
         return mBooks.size();
     }
 
-    public class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnCreateContextMenuListener{
         TextView bookTitle;
         TextView publisher;
         TextView publishedDate;
         ImageView mBookImg;
+        ImageView mItemMenu;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -55,6 +57,8 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             publishedDate = (TextView) itemView.findViewById(R.id.book_published_date);
             publisher = (TextView) itemView.findViewById(R.id.book_publisher);
             mBookImg = (ImageView) itemView.findViewById(R.id.book_cover_img);
+            mItemMenu = (ImageView) itemView.findViewById(R.id.item_menu);
+            mItemMenu.setOnCreateContextMenuListener(this);
             itemView.setOnClickListener(this);
         }
 
@@ -72,6 +76,12 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             Intent intent = new Intent(view.getContext(),BookDetails.class);
             intent.putExtra("Books",bookSelected);
             view.getContext().startActivity(intent);
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+            contextMenu.setHeaderTitle("Book Actions");
+            contextMenu.add(this.getAdapterPosition(),121,0,"Share with Friends");
         }
     }
 }

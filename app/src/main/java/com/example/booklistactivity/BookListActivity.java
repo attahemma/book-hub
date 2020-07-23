@@ -108,6 +108,12 @@ public class BookListActivity extends AppCompatActivity implements SearchView.On
 
     @Override
     public boolean onQueryTextSubmit(String s) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
         try {
             URL bookUrl = ApiUtils.buildUrl(s);
             new BookQueryTask().execute(bookUrl);
@@ -115,12 +121,6 @@ public class BookListActivity extends AppCompatActivity implements SearchView.On
         } catch (Exception e) {
             Log.d("Error", e.toString());
         }
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String s) {
-
         return false;
     }
 
