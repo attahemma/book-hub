@@ -21,7 +21,10 @@
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/white_bg"
+        android:textSize="18sp"
+        />
 
     <EditText
         android:id="@+id/adv_author"
@@ -35,7 +38,10 @@
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="@+id/adv_title"
         app:layout_constraintStart_toStartOf="@+id/adv_title"
-        app:layout_constraintTop_toBottomOf="@+id/adv_title" />
+        app:layout_constraintTop_toBottomOf="@+id/adv_title"
+        android:background="@drawable/white_bg"
+        android:textSize="18sp"
+        />
 
     <EditText
         android:id="@+id/adv_publisher"
@@ -49,7 +55,10 @@
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="@+id/adv_author"
         app:layout_constraintStart_toStartOf="@+id/adv_author"
-        app:layout_constraintTop_toBottomOf="@+id/adv_author" />
+        app:layout_constraintTop_toBottomOf="@+id/adv_author"
+        android:background="@drawable/white_bg"
+        android:textSize="18sp"
+        />
 
     <EditText
         android:id="@+id/adv_isbn"
@@ -63,7 +72,10 @@
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="@+id/adv_publisher"
         app:layout_constraintStart_toStartOf="@+id/adv_publisher"
-        app:layout_constraintTop_toBottomOf="@+id/adv_publisher" />
+        app:layout_constraintTop_toBottomOf="@+id/adv_publisher"
+        android:background="@drawable/white_bg"
+        android:textSize="18sp"
+        />
 
     <Button
         android:id="@+id/adv_btn_search"
